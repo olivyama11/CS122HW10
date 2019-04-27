@@ -12,11 +12,11 @@ import re
 
 
 def q1(table):
-    return len(table[table['Mfr Name'] == 'Honda'])
+    return len(table.loc[table['Mfr Name'] == 'Honda'])
 
 
 def q2(table):
-    return len(table[table['Guzzler?'] == 'G'])
+    return len(table.loc[table['Guzzler?'] == 'G'])
 
 
 def q3(table):
@@ -31,23 +31,26 @@ def q4(table):
 
 
 def q5(table):
-     awd = table[table['Drive Desc'] == 'All Wheel Drive']
+     awd = table.loc[table['Drive Desc'] == 'All Wheel Drive']
      return  awd['Comb FE (Guide) - Conventional Fuel'].max()
 
 
 # def q6(table):
 #
-# def q7(table):
-#
-#
+def q7(table):
+    sc = table.loc[table['Air Aspiration Method Desc'] == 'Supercharged']
+    return sc['Annual Fuel1 Cost - Conventional Fuel'].mean()
+
 # def q8(table):
 #
-# def q9(table):
-#
+def q9(table):
+    manual = table.loc[table['Transmission'].str.contains('Manual', na=False)]
+    return manual.groupby('Mfr Name').count()['Transmission'].idxmax()
+
 # def q10(table):
 #
-# def q11(table):
-
+def q11(table):
+    pass
 
 
 
@@ -61,7 +64,11 @@ def main():
     print(q4(table))
     print(q5(table))
 
+    print(q7(table))
 
+    print(q9(table))
+
+    print(q11(table))
 
 
 if __name__ == "__main__":
