@@ -53,8 +53,8 @@ def q4(table):
 
 def q5(table):
     """
-    Determines the highest combined FE - Conventional Fuel among all wheel
-    drives.
+    Determines the highest combined FE - Conventional Fuel among all
+    wheel drives.
     :param table: Pandas DataFrame representing '2019 FE Guide.csv'
     :return: (float) - the highest combined FE among AWD vehicles
     """
@@ -115,10 +115,13 @@ def q10(table):
     :return: (Pandas Series) a series representing the average annual
     fuel cost by car division
     """
-    series = pd.Series()
-    for group, dframe in table.groupby("Division"):
-        series[group] = dframe['Annual Fuel1 Cost - Conventional Fuel'].mean()
-    return series
+    return table.groupby('Division').mean()['Annual Fuel1 Cost - ' \
+                                            'Conventional Fuel']
+    # series = pd.Series()
+    # for group, dframe in table.groupby("Division"):
+    #     series[group] =
+    #             dframe['Annual Fuel1 Cost - Conventional Fuel'].mean()
+    # return series
 
 
 def q11(table):
@@ -131,7 +134,6 @@ def q11(table):
     - Fuel Economy:         30+
     - Hybrid:               Yes
     - # Batteries:          1+
-
     :param table: Pandas DataFrame representing '2019 FE Guide.csv'
     :return: (string) - the perfect carline for us.
     """
