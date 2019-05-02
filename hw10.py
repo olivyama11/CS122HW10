@@ -115,8 +115,9 @@ def q10(table):
     :return: (Pandas Series) a series representing the average annual
     fuel cost by car division
     """
-    return table.groupby('Division').mean()['Annual Fuel1 Cost - ' \
-                                            'Conventional Fuel']
+    afc = 'Annual Fuel1 Cost - Conventional Fuel'
+    return table.groupby('Division').mean()[afc]
+    
     # series = pd.Series()
     # for group, dframe in table.groupby("Division"):
     #     series[group] =
